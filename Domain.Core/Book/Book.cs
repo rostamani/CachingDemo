@@ -4,11 +4,11 @@ using System;
 public class APIResult
 {
     public Book Book { get; set; }
-    public object[] Comments { get; set; }
+    public Comment[] Comments { get; set; }
     public int CommentsCount { get; set; }
     public Book[] RelatedBooks { get; set; }
     public string ShareText { get; set; }
-    public object[] Quotes { get; set; }
+    public Quote[] Quotes { get; set; }
     public int QuotesCount { get; set; }
     public bool HideOffCoupon { get; set; }
 }
@@ -25,8 +25,8 @@ public class Book
     public string PublisherSlug { get; set; }
     public int Price { get; set; }
     public int NumberOfPages { get; set; }
-    public object[] Rates { get; set; }
-    public object[] RateDetails { get; set; }
+    public Rate[] Rates { get; set; }
+    public RateDetails[] RateDetails { get; set; }
     public string Sticker { get; set; }
     public bool HasTemporaryOff { get; set; }
     public int BeforeOffPrice { get; set; }
@@ -40,7 +40,7 @@ public class Book
     public string ShareUri { get; set; }
     public string ShareText { get; set; }
     public string Publisher { get; set; }
-    public object[] authors { get; set; }
+    public Author[] authors { get; set; }
     public File[] Files { get; set; }
     public object[] Labels { get; set; }
     public Category[] Categories { get; set; }
@@ -52,21 +52,76 @@ public class Book
     public int CurrencyBeforeOffPrice { get; set; }
 }
 
+public class Rate
+{
+    public int Value { get; set; }
+    public int Count { get; set; }
+}
+
+public class RateDetails
+{
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public double Rate { get; set; }
+}
+public class Quote
+{
+    public string Id { get; set; }
+    public Data Data { get; set; }
+    public int LikeCount { get; set; }
+    public int BookId { get; set; }
+    public int AccountId { get; set; }
+    public int CommentCount { get; set; }
+    public string CreationDate { get; set; }
+    public DateTime Date { get; set; }
+    public bool ShowComment { get; set; }
+    public string CoverUri { get; set; }
+    public string BookName { get; set; }
+    public string AuthorName { get; set; }
+    public string PublisherName { get; set; }
+    public string ProfileImageUri { get; set; }
+    public string Nickname { get; set; }
+}
+
+public class Data
+{
+    public string Quote { get; set; }
+    public int StartAtomId { get; set; }
+    public int EndAtomId { get; set; }
+    public int ChapterIndex { get; set; }
+    public int EndOffset { get; set; }
+    public int StartOffset { get; set; }
+}
+
+
+
+
+
+public class Author
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public int Type { get; set; }
+    public string Slug { get; set; }
+}
+
 public class File
 {
-    public int id { get; set; }
-    public int size { get; set; }
-    public int type { get; set; }
-    public int bookId { get; set; }
-    public int sequenceNo { get; set; }
+    public int Id { get; set; }
+    public int Size { get; set; }
+    public int Type { get; set; }
+    public int BookId { get; set; }
+    public int SequenceNo { get; set; }
 }
 
 public class Category
 {
-    public int id { get; set; }
-    public int parent { get; set; }
-    public string title { get; set; }
-    public string slug { get; set; }
+    public int Id { get; set; }
+    public int Parent { get; set; }
+    public string Title { get; set; }
+    public string Slug { get; set; }
+    public string Icon { get; set; }
 }
 
 public class Relatedbook
@@ -86,68 +141,9 @@ public class Bookdata
     public bool showPrice { get; set; }
 }
 
-public class Book1
-{
-    public int id { get; set; }
-    public string title { get; set; }
-    public int sourceBookId { get; set; }
-    public int canonicalId { get; set; }
-    public string description { get; set; }
-    public string htmlDescription { get; set; }
-    public int PublisherID { get; set; }
-    public string publisherSlug { get; set; }
-    public int price { get; set; }
-    public int numberOfPages { get; set; }
-    public int rating { get; set; }
-    public Rate[] rates { get; set; }
-    public object[] rateDetails { get; set; }
-    public string sticker { get; set; }
-    public bool hasTemporaryOff { get; set; }
-    public int beforeOffPrice { get; set; }
-    public bool isRtl { get; set; }
-    public bool showOverlay { get; set; }
-    public int PhysicalPrice { get; set; }
-    public int destination { get; set; }
-    public string type { get; set; }
-    public string refId { get; set; }
-    public string coverUri { get; set; }
-    public string shareUri { get; set; }
-    public string shareText { get; set; }
-    public string publisher { get; set; }
-    public object[] authors { get; set; }
-    public File1[] files { get; set; }
-    public object[] labels { get; set; }
-    public Category1[] categories { get; set; }
-    public bool subscriptionAvailable { get; set; }
-    public DateTime newsItemCreationDate { get; set; }
-    public int state { get; set; }
-    public bool encrypted { get; set; }
-    public int currencyPrice { get; set; }
-    public int currencyBeforeOffPrice { get; set; }
-}
 
-public class Rate
-{
-    public int value { get; set; }
-    public int count { get; set; }
-}
 
-public class File1
-{
-    public int id { get; set; }
-    public int size { get; set; }
-    public int type { get; set; }
-    public int bookId { get; set; }
-    public int sequenceNo { get; set; }
-}
 
-public class Category1
-{
-    public int id { get; set; }
-    public int parent { get; set; }
-    public string title { get; set; }
-    public string slug { get; set; }
-}
 
 public class Destination
 {
@@ -179,11 +175,6 @@ public class Backgroundconfig
 
 
 
-public class Rootobject
-{
-    public Comment[] comments { get; set; }
-}
-
 public class Comment
 {
     public int Id { get; set; }
@@ -203,6 +194,9 @@ public class Comment
     public string Text { get; set; }
     public bool IsLiked { get; set; }
     public bool IsDisliked { get; set; }
-    public object[] RateDetails { get; set; }
+    public RateDetails[] RateDetails { get; set; }
     public int Recommendation { get; set; }
 }
+
+
+
