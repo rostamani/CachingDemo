@@ -8,4 +8,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\1-Domain\Core\Domain.Core\Domain.Core.csproj" />
+    <ProjectReference Include="..\..\1-Domain\Services\Domain.AppServices\Domain.AppServices.csproj" />
+    <ProjectReference Include="..\..\1-Domain\Services\Domain.Services\Domain.Services.csproj" />
+    <ProjectReference Include="..\..\2-Infra\Cache\Infra.Cache.DistributedCache\Infra.Cache.DistributedCache.csproj" />
+    <ProjectReference Include="..\..\2-Infra\DataAccess\Infra.Data.Repos\Infra.Data.Repos.csproj" />
+  </ItemGroup>
+
 </Project>
